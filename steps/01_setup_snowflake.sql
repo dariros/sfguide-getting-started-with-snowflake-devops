@@ -33,15 +33,15 @@ CREATE OR REPLACE NOTIFICATION INTEGRATION email_integration
 
 
 -- Database level objects
-CREATE OR ALTER SCHEMA bronze;
-CREATE OR ALTER SCHEMA silver;
-CREATE OR ALTER SCHEMA gold;
+CREATE OR ALTER SCHEMA quickstart_prod.bronze;
+CREATE OR ALTER SCHEMA quickstart_prod.silver;
+CREATE OR ALTER SCHEMA quickstart_prod.gold;
 
 
 -- Schema level objects
-CREATE OR REPLACE FILE FORMAT bronze.json_format TYPE = 'json';
-CREATE OR ALTER STAGE bronze.raw;
+CREATE OR REPLACE FILE FORMAT quickstart_prod.bronze.json_format TYPE = 'json';
+CREATE OR ALTER STAGE quickstart_prod.bronze.raw;
 
 
 -- Copy file from GitHub to internal stage
-copy files into @bronze.raw from @quickstart_common.public.quickstart_repo/branches/main/data/airport_list.json;
+copy files into @quickstart_prod.bronze.raw from @quickstart_common.public.quickstart_repo/branches/main/data/airport_list.json;
